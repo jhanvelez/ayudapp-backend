@@ -8,18 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { RolesModule } from './roles/roles.module';
 import { CaslModule } from './auth/casl/casl.module';
 import { LocationsModule } from './locations/locations.module';
-import { ReadingModule } from './reading/reading.module';
-import { MeterModule } from './meter/meter.module';
-import { BillingModule } from './billing/billing.module';
-import { SubscriberModule } from './subscriber/subscriber.module';
-import { BillingConceptModule } from './billing-concept/billing-concept.module';
-import { InvoiceModule } from './invoice/invoice.module';
-import { ServiceOrderModule } from './service-order/service-order.module';
-import { PaymentModule } from './payment/payment.module';
 import { NotificationModule } from './notification/notification.module';
-import { PropertyModule } from './property/property.module';
-import { TenantModule } from './tenant/tenant.module';
-import { ReadingSessionModule } from './reading-session/reading-session.module';
 
 import * as crypto from 'crypto';
 (global as any).crypto = crypto;
@@ -33,7 +22,7 @@ import * as crypto from 'crypto';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        type: 'mysql',
+        type: 'postgres',
         host: configService.get<string>('DATABASE_HOST'),
         port: configService.get<number>('DATABASE_PORT'),
         username: configService.get<string>('DATABASE_USER'),
@@ -50,18 +39,7 @@ import * as crypto from 'crypto';
     RolesModule,
     CaslModule,
     LocationsModule,
-    ReadingModule,
-    MeterModule,
-    BillingModule,
-    SubscriberModule,
-    BillingConceptModule,
-    InvoiceModule,
-    ServiceOrderModule,
-    PaymentModule,
     NotificationModule,
-    PropertyModule,
-    TenantModule,
-    ReadingSessionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
